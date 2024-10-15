@@ -1,4 +1,4 @@
-import NovaXServer from '../lib/server.js'
-import NovaXRoutes from '../lib/route.js'
+import sapixServer from '../lib/server.js'
+import sapixRoutes from '../lib/route.js'
 
-export { NovaXServer, NovaXRoutes };
+export { sapixServer, sapixRoutes };

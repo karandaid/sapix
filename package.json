@@ -1,7 +1,7 @@
 {
-  "name": "novax",
+  "name": "sapix",
   "version": "1.0.0",
-  "description": "NOVA stands for Node.js Optimized Virtual API. NovaX is a high-performance, scalable, and developer-friendly web framework for Node.js, designed to provide a superior alternative to existing frameworks with built-in security, efficient routing, and a modular architecture.",
+  "description": "sapix is a high-performance, scalable, and developer-friendly web framework for Node.js, designed to provide a superior alternative to existing frameworks with built-in security, efficient routing, and a modular architecture.",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -36,12 +36,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/karandaid/novax.git"
+    "url": "https://github.com/karandaid/sapix.git"
   },
   "bugs": {
-    "url": "https://github.com/karandaid/novax/issues"
+    "url": "https://github.com/karandaid/sapix/issues"
   },
-  "homepage": "https://github.com/karandaid/novax#readme",
+  "homepage": "https://github.com/karandaid/sapix#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

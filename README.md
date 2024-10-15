@@ -1,145 +1,206 @@
-### NovaX
+# **Sapix Library Documentation**  
 
-**NOVA** is an acronym for **Node.js Optimized Virtual API**
+**SAPIX**: **S**imple **A**PI **P**rocessing and **I**ntegration e**X**perience  
 
----
-
-### Project Description
-
-**NovaX** is a cutting-edge web framework for Node.js, meticulously crafted to enhance the development of high-performance web applications and APIs. Designed with a focus on speed, scalability, and an exceptional developer experience, NovaX provides a streamlined and modular architecture that simplifies the creation of robust and efficient server-side solutions.
+Welcome to **Sapix**, a lightweight library designed to help you build robust servers with intuitive routing. This documentation provides examples and instructions to get you started using **Sapix** effectively.
 
 ---
 
-### Key Features
+## **Installation**  
 
-- **High Performance:** Engineered for optimal speed and low latency, NovaX ensures rapid request handling and efficient resource utilization, enabling your applications to perform seamlessly under heavy loads.
-
-- **Scalable Architecture:** Whether you're building a small-scale project or a large enterprise application, NovaX scales effortlessly to meet growing demands without requiring significant refactoring.
-
-- **Modular Design:** NovaX's flexible and extensible structure allows developers to integrate a wide range of plugins and middleware, facilitating customization and feature expansion without bloating the core framework.
-
-- **Asynchronous Processing:** Leveraging modern asynchronous programming paradigms, NovaX efficiently manages concurrent operations, fully utilizing Node.js's capabilities to handle multiple tasks simultaneously.
-
-- **Built-in Security:** NovaX incorporates comprehensive security measures to protect your applications against common vulnerabilities such as XSS, CSRF, and SQL injection, ensuring reliable and secure deployments.
-
-- **Developer-Friendly:** Featuring an intuitive API, thorough documentation, and supportive community resources, NovaX accelerates the development process and reduces the learning curve for both new and experienced developers.
-
-- **Flexible Routing:** NovaX offers a robust and versatile routing system that simplifies the definition and management of application endpoints, making it easy to handle complex routing scenarios.
-
-- **Comprehensive Error Handling:** Centralized error management in NovaX streamlines debugging and maintains application stability by providing consistent and effective error responses.
-
----
-
-### Advantages Over Traditional Frameworks
-
-**NovaX** distinguishes itself by combining unparalleled performance with a user-centric design, enabling developers to build scalable and secure applications more efficiently. Its lightweight core minimizes unnecessary overhead, while the extensible architecture ensures adaptability to a wide range of project requirements. Whether developing simple APIs or intricate web applications, NovaX provides the tools and flexibility necessary to deliver high-quality solutions swiftly and reliably.
-
----
-
-### License
-
-NovaX is released under the [MIT License](https://opensource.org/licenses/MIT).
-
-```markdown
-MIT License
-
-Copyright (c) 2024 [Your Name or Your Company]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-```
-
----
-
-### Getting Started
-
-**Installation**
-
-Install NovaX via npm:
-
+Install **Sapix** via npm:  
 ```bash
-npm install novax
+npm install sapix
 ```
 
-**Creating a Simple Server**
+---
 
-Here's a basic example to get you started with NovaX:
+## **Usage Overview**
+
+Below is an example of setting up a server using **Sapix** and configuring multiple routes with different HTTP methods.
+
+---
+
+### **Step-by-Step: Create Routes with Sapix**
+
+#### **GET `/` – Home Route**  
+```javascript
+routes.get('/', (res) => {
+    res.status(200).sendText('Welcome to sapixRoutes Home Page!');
+});
+```
+- **Purpose**: Handles the homepage request and responds with text.  
+- **Response**:
+  ```
+  Welcome to sapixRoutes Home Page!
+  ```
+
+#### **GET `/profile/:id/user/:userId` – Dynamic Route with Params**  
+```javascript
+routes.get('/profile/:id/user/:userId', (res, query, path_params) => {
+    res.status(200).sendJSON({ 
+        message: 'This is a JSON response.', 
+        query, 
+        path_params 
+    });
+});
+```
+- **Purpose**: Responds with JSON including query and path parameters.  
+- **Example Request**:  
+  ```
+  GET /profile/1/user/456?status=active
+  ```
+- **Example Response**:
+  ```json
+  {
+    "message": "This is a JSON response.",
+    "query": { "status": "active" },
+    "path_params": { "id": "1", "userId": "456" }
+  }
+  ```
+
+---
+
+## **HTTP Method Examples**
+
+#### **POST `/profile` – Create User Profile**  
+```javascript
+routes.post('/profile', (res) => {
+    res.status(200).sendJSON({ message: 'Profile created successfully.' });
+});
+```
+- **Purpose**: Responds to `POST` requests with a confirmation message.  
+- **Response**:
+  ```json
+  { "message": "Profile created successfully." }
+  ```
+
+#### **DELETE `/profile` – Delete User Profile**  
+```javascript
+routes.delete('/profile', (res) => {
+    res.status(200).sendJSON({ message: 'Profile deleted successfully.' });
+});
+```
+- **Purpose**: Responds with a message confirming deletion.  
+- **Response**:
+  ```json
+  { "message": "Profile deleted successfully." }
+  ```
+
+#### **PATCH `/profile` – Update User Profile**  
+```javascript
+routes.patch('/profile', (res) => {
+    res.status(200).sendJSON({ message: 'Profile updated successfully.' });
+});
+```
+- **Purpose**: Responds with a message confirming the profile update.  
+- **Response**:
+  ```json
+  { "message": "Profile updated successfully." }
+  ```
+
+---
+
+## **Additional Routes**
+
+#### **GET `/about` – About Page**  
+```javascript
+routes.get('/about', (res) => {
+    res.status(200).sendHTML('<h1>Welcome to the About Page!</h1>');
+});
+```
+- **Purpose**: Sends an HTML response for the "About" page.  
+- **Response**:
+  ```html
+  <h1>Welcome to the About Page!</h1>
+  ```
+
+#### **GET `/error` – Error Handling**  
+```javascript
+routes.get('/error', (res) => {
+    res.sendError('An unexpected error occurred.', 500);
+});
+```
+- **Purpose**: Simulates a server error response.  
+- **Response**:
+  ```json
+  { "error": "An unexpected error occurred." }
+  ```
+
+---
+
+## **Starting the Sapix Server**
+
+Once your routes are defined, start the server using the following code:
 
 ```javascript
-const NovaX = require('novax');
+import { sapixServer, sapixRoutes } from 'sapix';
 
-const app = new NovaX();
-
-// Define a route
-app.get('/', (req, res) => {
-  res.send('Hello from NovaX!');
-});
+// Create routes
+const routes = new sapixRoutes();
 
 // Start the server
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+const server = new sapixServer()
+    .setPort(4000)    // Specify the port
+    .setRoute(routes) // Attach the routes
+    .start();         // Start the server
+```
+
+Your server will now be running at `http://localhost:4000`.
+
+---
+
+## **Key Features of Sapix**
+
+1. **S**imple: Easy to configure with minimal setup.  
+2. **A**PI-oriented: Focused on building APIs efficiently.  
+3. **P**rocessing-friendly: Handles different HTTP methods (GET, POST, PATCH, DELETE).  
+4. **I**ntegrated: Supports dynamic routes, query params, and path params.  
+5. **X**perience-first: Provides error handling and a smooth developer experience.
+
+---
+
+## **Project Structure**
+
+```
+├── index.js           // Main server script
+└── package.json       // Project metadata and dependencies
+```
+
+---
+
+## **How to Test**
+
+- **GET Request**:  
+  Visit `http://localhost:4000/profile/1/user/456` in your browser or Postman.
+  
+- **POST Request**:  
+  Send a `POST` request to `http://localhost:4000/profile` with an appropriate payload.
+
+---
+
+## **Error Handling**
+
+Use `sendError` to return error responses:
+
+```javascript
+routes.get('/error', (res) => {
+    res.sendError('Something went wrong!', 500);
 });
 ```
 
-**Advanced Usage**
+---
 
-NovaX supports a wide range of features to help you build complex applications:
+## **Feedback & Contribution**
 
-- **Middleware Support:** Easily add middleware for handling requests, responses, authentication, and more.
-- **Routing Parameters:** Define dynamic routes with parameters for flexible API endpoints.
-- **Error Handling:** Centralized error handling mechanisms to manage and respond to errors gracefully.
-- **Templating Engines:** Integrate with popular templating engines to render dynamic content.
-
-For detailed documentation and advanced configurations, visit the [NovaX GitHub Repository](https://github.com/yourusername/novax).
+Feel free to contribute to this project by submitting pull requests or opening issues.
 
 ---
 
-### Contributing
+## **License**
 
-Contributions are welcome! If you'd like to contribute to NovaX, please follow these steps:
-
-1. **Fork the Repository:** Click the "Fork" button on the GitHub repository page.
-2. **Clone Your Fork:**  
-   ```bash
-   git clone https://github.com/yourusername/novax.git
-   ```
-3. **Create a Branch:**  
-   ```bash
-   git checkout -b feature/YourFeatureName
-   ```
-4. **Commit Your Changes:**  
-   ```bash
-   git commit -m "Add some feature"
-   ```
-5. **Push to Your Fork:**  
-   ```bash
-   git push origin feature/YourFeatureName
-   ```
-6. **Open a Pull Request:** Submit a pull request detailing your changes.
-
-Please ensure your code follows the project's coding standards and includes appropriate tests.
+This project is licensed under the **MIT License**.
 
 ---
 
-### Support
-
-If you encounter any issues or have questions about NovaX, feel free to open an issue on the [GitHub Repository](https://github.com/yourusername/novax) or reach out to the community through our discussion forums.
-
----
-
-Thank you for choosing **NovaX**! We look forward to seeing the amazing applications you build with it.
+Enjoy the **Simple API Processing and Integration eXperience** with Sapix! 🚀
