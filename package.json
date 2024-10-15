@@ -1,0 +1,57 @@
+{
+  "name": "novax",
+  "version": "1.0.0",
+  "description": "NOVA stands for Node.js Optimized Virtual API. NovaX is a high-performance, scalable, and developer-friendly web framework for Node.js, designed to provide a superior alternative to existing frameworks with built-in security, efficient routing, and a modular architecture.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{js,json}\"",
+    "build": "echo \"No build step required\""
+  },
+  "keywords": [
+    "nodejs",
+    "web-framework",
+    "api",
+    "server",
+    "mvc",
+    "performance",
+    "scalable",
+    "security",
+    "middleware",
+    "routing",
+    "express-alternative",
+    "http",
+    "backend",
+    "developer-friendly",
+    "lightweight",
+    "modular",
+    "asynchronous",
+    "open-source"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karandaid/novax.git"
+  },
+  "bugs": {
+    "url": "https://github.com/karandaid/novax/issues"
+  },
+  "homepage": "https://github.com/karandaid/novax#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "eslint": "^9.12.0",
+    "globals": "^15.11.0",
+    "jest": "^29.6.1",
+    "nodemon": "^3.0.0",
+    "prettier": "^3.0.0"
+  }
+}
