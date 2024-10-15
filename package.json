@@ -1,13 +1,13 @@
 {
   "name": "sapix",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "sapix is a high-performance, scalable, and developer-friendly web framework for Node.js, designed to provide a superior alternative to existing frameworks with built-in security, efficient routing, and a modular architecture.",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{js,json}\"",
     "build": "echo \"No build step required\""
