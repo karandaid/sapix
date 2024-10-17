@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --detectOpenHandles;",
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{js,json}\"",
     "build": "echo \"No build step required\""
@@ -58,6 +58,7 @@
     "globals": "^15.11.0",
     "jest": "^29.6.1",
     "nodemon": "^3.0.0",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "supertest": "^7.0.0"
   }
 }
