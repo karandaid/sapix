@@ -5,7 +5,7 @@ import SapixRoutes from '../lib/route.js';
 // Setup the initial app and routes from Sapix
 const routes = new SapixRoutes();
 
-routes.prefix('/api/v1').get('/', (res) => {
+routes.prefix('/api/v1').get('', (res) => {
   res.status(200).sendText('Welcome to sapixRoutes Home Page! v1');
 });
 

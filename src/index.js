@@ -1,4 +1,4 @@
 import SapixServer from '../lib/server.js'
-import sapixRoutes from '../lib/route.js'
+import SapixRoutes from '../lib/route.js'
 
-export { SapixServer, sapixRoutes };
+export { SapixServer, SapixRoutes };
