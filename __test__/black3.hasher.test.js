@@ -1,4 +1,4 @@
-import { Blake2Hasher } from '../lib/utils/blake3_hasher.mjs';
+import Blake2Hasher from '../lib/utils/blake3_hasher.mjs';
 
 describe('Blake2Hasher', () => {
   let hasher;

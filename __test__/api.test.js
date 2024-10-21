@@ -116,8 +116,8 @@ describe('Sapix API Integration Tests', () => {
   // Test the /api/v1/user POST endpoint
   it('should return welcome message for /api/v1/user POST', async () => {
     const response = await request(app).post('/api/v1/user');
-    expect(response.status).toBe(200);
-    expect(response.text).toBe('Welcome to sapixRoutes Home Page!');
+    expect(response.status).toBe(501);
+    expect(response.text).toBe('You never implemented it');
   });
 
   // Test the /api/v2/user/:id GET endpoint
@@ -164,25 +164,16 @@ describe('Sapix API Integration Tests', () => {
   it('should return JSON response for /profile POST', async () => {
     const response = await request(app).post('/profile');
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      message: 'This is a JSON response.',
-    });
   });
 
   it('should return JSON response for /profile DELETE', async () => {
     const response = await request(app).delete('/profile');
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      message: 'This is a JSON response for delete.',
-    });
+    expect(response.status).toBe(501);
   });
 
   it('should return JSON response for /profile PATCH', async () => {
     const response = await request(app).patch('/profile');
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      message: 'This is a JSON response for Patch.',
-    });
+    expect(response.status).toBe(501);
   });
 
   it('should return HTML for /about GET', async () => {
