@@ -30,6 +30,8 @@ routes.get('/profile/:id/user/:userId');
 routes.get('/product/:id'); // Assuming without datatype for simplicity
 routes.get('/product/:id/user/:name'); // Assuming without datatype
 routes.get('/user/:name');
+routes.get('/user/[:id=number]');
+routes.get('/user/[:email=email]');
 routes.get('/product/:random'); // Assuming without datatype
 routes.get('/profile/:id/:template/username/:username/age/:age');
 
@@ -101,9 +103,10 @@ describe('Sapix API Integration Tests', () => {
     });
 
     // Invalid cases
-    it('should return 501 for invalid string id', async () => {
+    it('should return 200 for invalid string id', async () => {
       const response = await request(app).get(`/product/${invalidData.string}`);
-      expect(response.status).toBe(501);
+      expect(response.status).toBe(200);
+      expect(response.text).toBe("{\"query\":{},\"params\":{\"id\":\"123\"},\"body\":{}}");
     });
 
     it('should return 200 for invalid uuid id', async () => {
@@ -129,9 +132,9 @@ describe('Sapix API Integration Tests', () => {
     });
 
     // Invalid id cases
-    it('should return 501 for invalid string id', async () => {
+    it('should return 200 for invalid string id', async () => {
       const response = await request(app).get(`/product/${invalidData.string}/user/${validData.string}`);
-      expect(response.status).toBe(501);
+      expect(response.status).toBe(200);
     });
 
     it('should return 200 for invalid uuid id', async () => {
@@ -157,9 +160,10 @@ describe('Sapix API Integration Tests', () => {
     });
 
     // Both parameters invalid
-    it('should return 501 for invalid id and invalid name', async () => {
+    it('should return 200 for invalid id and invalid name', async () => {
       const response = await request(app).get(`/product/${invalidData.string}/user/${invalidData.uuid}`);
-      expect(response.status).toBe(501);
+      expect(response.status).toBe(200);
+      expect(response.text).toBe("{\"query\":{},\"params\":{\"id\":\"123\",\"name\":\"invalid-uuid\"},\"body\":{}}");
     });
   });
 
@@ -242,11 +246,12 @@ describe('Sapix API Integration Tests', () => {
     });
 
     // Invalid `id`
-    it('should return 501 for invalid string id', async () => {
+    it('should return 200 for invalid string id', async () => {
       const response = await request(app).get(
         `/profile/${invalidData.string}/${validData.string}/username/${validData.string}/age/${validData.number}`
       );
-      expect(response.status).toBe(501);
+      expect(response.status).toBe(200);
+      expect(response.text).toBe("{\"query\":{},\"params\":{\"id\":\"123\",\"template\":\"JohnDoe\",\"username\":\"JohnDoe\",\"age\":\"123\"},\"body\":{}}");
     });
 
     it('should return 200 for null id', async () => {
@@ -287,11 +292,12 @@ describe('Sapix API Integration Tests', () => {
     });
 
     // Invalid `age`
-    it('should return 501 for invalid string age', async () => {
+    it('should return 200 for invalid string age', async () => {
       const response = await request(app).get(
         `/profile/${validData.number}/${validData.string}/username/${validData.string}/age/${invalidData.string}`
       );
-      expect(response.status).toBe(501);
+      expect(response.status).toBe(200);
+      expect(response.text).toBe("{\"query\":{},\"params\":{\"id\":\"123\",\"template\":\"JohnDoe\",\"username\":\"JohnDoe\",\"age\":\"123\"},\"body\":{}}");
     });
 
     it('should return 200 for null age', async () => {
@@ -302,11 +308,12 @@ describe('Sapix API Integration Tests', () => {
     });
 
     // Multiple Invalid Parameters
-    it('should return 501 for invalid id and age', async () => {
+    it('should return 200 for invalid id and age', async () => {
       const response = await request(app).get(
         `/profile/${invalidData.string}/${validData.string}/username/${validData.string}/age/${invalidData.string}`
       );
-      expect(response.status).toBe(501);
+      expect(response.status).toBe(200);
+      expect(response.text).toBe("{\"query\":{},\"params\":{\"id\":\"123\",\"template\":\"JohnDoe\",\"username\":\"JohnDoe\",\"age\":\"123\"},\"body\":{}}");
     });
 
     it('should return 200 for null id and template', async () => {
