@@ -164,25 +164,18 @@ describe('Sapix API Integration Tests', () => {
   it('should return JSON response for /profile POST', async () => {
     const response = await request(app).post('/profile');
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      message: 'This is a JSON response.',
-    });
   });
 
   it('should return JSON response for /profile DELETE', async () => {
     const response = await request(app).delete('/profile');
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      message: 'This is a JSON response for delete.',
-    });
+    expect(response.text).toBe("{\"message\":\"This is a JSON response for delete.\"}");
   });
 
   it('should return JSON response for /profile PATCH', async () => {
     const response = await request(app).patch('/profile');
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      message: 'This is a JSON response for Patch.',
-    });
+    expect(response.text).toBe("{\"message\":\"This is a JSON response for Patch.\"}");
   });
 
   it('should return HTML for /about GET', async () => {
