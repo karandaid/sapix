@@ -1,4 +1,5 @@
-import parseBody from '../lib/utils/parser.mjs'
+import parseBody from '../lib/utils/parser.mjs';
+import { Readable } from 'stream';
 
 describe('parseBody', () => {
   test('parses JSON correctly', async () => {
@@ -73,4 +74,33 @@ describe('parseBody', () => {
     const body = '{}';
     await expect(parseBody(body, 'unsupported/type')).rejects.toThrow('Unsupported content type: unsupported/type');
   });
+
+  test('throws error on malformed multipart/form-data', async () => {
+    const req = createMockRequest(
+      '--boundary\r\n' +
+      'Content-Disposition: form-data; name="name"\r\n' +
+      '\r\n' +
+      'John\r\n' +
+      '--boundary',
+      'multipart/form-data; boundary=boundary'
+    );
+
+    await expect(parseBody(null, 'multipart/form-data', req)).rejects.toThrow('Unsupported content type: multipart/form-data');
+  });
+
 });
+
+// Helper function to create a mock request for multipart/form-data
+function createMockRequest(body, contentType) {
+  const req = new Readable({
+      read() {
+          this.push(body);
+          this.push(null);
+      }
+  });
+  req.headers = {
+      'content-type': contentType,
+      'content-length': Buffer.byteLength(body),
+  };
+  return req;
+}
