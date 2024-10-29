@@ -1,6 +1,6 @@
 {
   "name": "sapix",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "sapix is a high-performance, scalable, and developer-friendly web framework for Node.js, designed to provide a superior alternative to existing frameworks with built-in security, efficient routing, and a modular architecture.",
   "main": "src/index.js",
   "type": "module",
@@ -32,7 +32,7 @@
     "asynchronous",
     "open-source"
   ],
-  "author": "Your Name",
+  "author": "Karandeep Singh",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -46,6 +46,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@babel/parser": "^7.26.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "formdata-node": "^6.0.3",
