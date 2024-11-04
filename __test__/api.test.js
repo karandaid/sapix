@@ -18,7 +18,7 @@ routes.post('/user', (res) => {
 });
 
 routes.prefix('/api/v2');
-routes.get('/user/:id', (res, query, path_params, body) => {
+routes.get('/user/:id', (res, req, query, path_params, body) => {
   res.status(200).sendJSON({
     query,
     path_params,
@@ -35,7 +35,7 @@ routes.get('/', (res) => {
   res.status(200).sendText('Welcome to sapixRoutes Home Page!');
 });
 
-routes.get('/profile/:id/user/:userId', (res, query, path_params) => {
+routes.get('/profile/:id/user/:userId', (res, req, query, path_params) => {
   res.status(200).sendJSON({
     message: 'This is a JSON response.',
     query,
@@ -43,7 +43,7 @@ routes.get('/profile/:id/user/:userId', (res, query, path_params) => {
   });
 });
 
-routes.get('/profile/user/:userId', (res, query, path_params, body) => {
+routes.get('/profile/user/:userId', (res, req, query, path_params, body) => {
   res.status(200).sendJSON({
     query,
     path_params,
@@ -51,7 +51,7 @@ routes.get('/profile/user/:userId', (res, query, path_params, body) => {
   });
 });
 
-routes.get('/profile', (res, query, path_params) => {
+routes.get('/profile', (res, req, query, path_params) => {
   res.status(200).sendJSON({
     message: 'This is a JSON response.',
     query,
